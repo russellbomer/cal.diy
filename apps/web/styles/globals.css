@@ -1,3 +1,211 @@
+/* CRAFTSMAN PALETTE - injected */
+/*
+  CRAFTSMAN PALETTE — Cal.com theme override
+  Inject at the TOP of apps/web/styles/globals.css (setup.sh handles this).
+
+  Palette reference (from portfolio_theme.txt):
+    Linen      hsl(44  48% 94%)   #f5efe0   warm cream background
+    Thorn      hsl(107 18% 15%)   #1e2c1a   dark green-brown foreground
+    Fern       hsl(118 19% 41%)   #567c55   sage green primary
+    Ferrum     hsl(22  76% 36%)   #a33e0e   terracotta secondary/rust
+    Mistral    hsl(88  25% 78%)   #bac9a6   muted sage
+    Eucalyptus hsl(144 14% 63%)   #8aab96   soft sage accent
+    Creamsicle hsl(23  81% 63%)   #f0855c   warm orange highlight
+*/
+
+/* ── Cal.com CSS custom properties (cal-* namespace) ─────────────────────────── */
+:root {
+  /* Core UI surfaces */
+  --cal-bg:                hsl(44, 48%, 94%);    /* Linen */
+  --cal-bg-emphasis:       hsl(88, 25%, 85%);    /* Mistral lightened */
+  --cal-bg-subtle:         hsl(88, 25%, 90%);
+  --cal-bg-muted:          hsl(88, 25%, 78%);    /* Mistral */
+  --cal-bg-inverted:       hsl(107, 18%, 15%);   /* Thorn */
+
+  /* Text */
+  --cal-text:              hsl(107, 18%, 15%);   /* Thorn */
+  --cal-text-emphasis:     hsl(107, 18%, 10%);   /* Thorn dark */
+  --cal-text-subtle:       hsl(107, 12%, 40%);
+  --cal-text-muted:        hsl(107, 10%, 55%);
+  --cal-text-inverted:     hsl(44, 48%, 94%);    /* Linen */
+  --cal-text-error:        hsl(22, 76%, 36%);    /* Ferrum */
+  --cal-text-info:         hsl(118, 19%, 41%);   /* Fern */
+
+  /* Borders */
+  --cal-border:            hsl(88, 20%, 72%);    /* Mistral mid */
+  --cal-border-emphasis:   hsl(22, 76%, 36%);    /* Ferrum */
+  --cal-border-subtle:     hsl(88, 20%, 84%);
+  --cal-border-muted:      hsl(88, 15%, 88%);
+  --cal-border-error:      hsl(22, 76%, 36%);
+
+  /* Brand — Fern */
+  --brand-color:           #567C55;
+  --brand-text-color:      #ffffff;
+
+  /* Dark-mode brand (used when user switches to dark) */
+  --brand-color-dark-mode: hsl(118, 19%, 55%);   /* Fern lightened */
+  --brand-text-color-dark-mode: hsl(107, 18%, 10%);
+}
+
+/* ── shadcn/radix variables (used in newer Cal.com UI) ───────────────────────── */
+:root {
+  --background: 44 48% 94%;          /* Linen */
+  --foreground: 107 18% 15%;         /* Thorn */
+
+  --card: 44 48% 97%;
+  --card-foreground: 107 18% 15%;
+
+  --popover: 44 48% 97%;
+  --popover-foreground: 107 18% 15%;
+
+  --primary: 118 19% 41%;            /* Fern */
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 88 25% 78%;           /* Mistral */
+  --secondary-foreground: 107 18% 15%;
+
+  --muted: 88 25% 85%;
+  --muted-foreground: 107 12% 40%;
+
+  --accent: 144 14% 63%;             /* Eucalyptus */
+  --accent-foreground: 107 18% 15%;
+
+  --destructive: 22 76% 36%;         /* Ferrum */
+  --destructive-foreground: 44 48% 94%;
+
+  --border: 88 20% 72%;
+  --input: 88 20% 72%;
+  --ring: 118 19% 41%;               /* Fern */
+
+  --radius: 0.5rem;
+}
+
+/* ── Dark mode ───────────────────────────────────────────────────────────────── */
+.dark {
+  --cal-bg:                hsl(107, 18%, 15%);   /* Thorn */
+  --cal-bg-emphasis:       hsl(107, 16%, 20%);
+  --cal-bg-subtle:         hsl(107, 14%, 18%);
+  --cal-bg-muted:          hsl(118, 14%, 22%);
+  --cal-bg-inverted:       hsl(44, 48%, 94%);    /* Linen */
+
+  --cal-text:              hsl(44, 48%, 94%);    /* Linen */
+  --cal-text-emphasis:     hsl(44, 48%, 98%);
+  --cal-text-subtle:       hsl(44, 30%, 70%);
+  --cal-text-muted:        hsl(44, 15%, 50%);
+  --cal-text-inverted:     hsl(107, 18%, 15%);
+  --cal-text-info:         hsl(144, 14%, 63%);   /* Eucalyptus */
+
+  --cal-border:            hsl(107, 14%, 25%);
+  --cal-border-emphasis:   hsl(22, 76%, 36%);    /* Ferrum */
+  --cal-border-subtle:     hsl(107, 12%, 22%);
+  --cal-border-muted:      hsl(107, 10%, 20%);
+
+  --background: 107 18% 15%;
+  --foreground: 44 48% 94%;
+  --card: 107 16% 18%;
+  --card-foreground: 44 48% 94%;
+  --popover: 107 16% 18%;
+  --popover-foreground: 44 48% 94%;
+  --primary: 118 19% 55%;
+  --primary-foreground: 107 18% 10%;
+  --secondary: 107 14% 22%;
+  --secondary-foreground: 44 48% 94%;
+  --muted: 107 14% 22%;
+  --muted-foreground: 44 30% 65%;
+  --accent: 23 81% 63%;              /* Creamsicle in dark mode */
+  --accent-foreground: 107 18% 10%;
+  --border: 107 14% 25%;
+  --input: 107 14% 25%;
+  --ring: 118 19% 55%;
+}
+
+/* ── Typography ──────────────────────────────────────────────────────────────── */
+/* Cal.com loads its own fonts; we override to match the portfolio */
+:root {
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: "Syne", "Fraunces", Georgia, serif;
+}
+
+body,
+.cal-booking-form,
+[data-testid] {
+  font-family: var(--font-sans) !important;
+  letter-spacing: -0.01em;
+}
+
+h1, h2, h3, .font-cal, [class*="font-cal"] {
+  font-family: var(--font-display) !important;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+/* ── Soft corners everywhere ─────────────────────────────────────────────────── */
+button,
+.btn,
+input,
+textarea,
+select,
+[class*="rounded"] {
+  border-radius: 0.5rem !important;
+}
+
+[class*="rounded-full"] {
+  border-radius: 9999px !important;
+}
+
+/* ── Primary buttons — Fern fill ─────────────────────────────────────────────── */
+button[type="submit"],
+.btn-primary,
+[data-testid="confirm-book-button"],
+[class*="bg-brand"] {
+  background-color: hsl(118, 19%, 41%) !important;   /* Fern */
+  color: #ffffff !important;
+  border: none !important;
+}
+
+button[type="submit"]:hover,
+.btn-primary:hover,
+[class*="bg-brand"]:hover {
+  background-color: hsl(118, 19%, 35%) !important;   /* Fern dark */
+}
+
+/* ── Availability time slots ─────────────────────────────────────────────────── */
+[data-testid="time-button"],
+[class*="time-slot"] {
+  border-color: hsl(88, 20%, 72%) !important;        /* Mistral border */
+  background-color: hsl(44, 48%, 97%) !important;
+  color: hsl(107, 18%, 15%) !important;
+}
+
+[data-testid="time-button"]:hover,
+[class*="time-slot"]:hover,
+[data-testid="time-button"][aria-selected="true"] {
+  background-color: hsl(118, 19%, 41%) !important;   /* Fern */
+  color: #ffffff !important;
+  border-color: hsl(118, 19%, 41%) !important;
+}
+
+/* ── Calendar day selection ──────────────────────────────────────────────────── */
+[class*="selected"] > button,
+[aria-selected="true"] > button {
+  background-color: hsl(118, 19%, 41%) !important;
+  color: #ffffff !important;
+}
+
+[class*="today"] > button {
+  border: 2px solid hsl(22, 76%, 36%) !important;    /* Ferrum ring for today */
+  color: hsl(22, 76%, 36%) !important;
+}
+
+/* ── Links ───────────────────────────────────────────────────────────────────── */
+a:not([class*="btn"]) {
+  color: hsl(118, 19%, 41%);   /* Fern */
+}
+
+a:not([class*="btn"]):hover {
+  color: hsl(22, 76%, 36%);    /* Ferrum on hover */
+}
+
 @import "tailwindcss";
 @import "../../../packages/config/theme/shared-sources.css";
 @import "../../../packages/config/theme/tokens.css";
