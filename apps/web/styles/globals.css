@@ -494,6 +494,12 @@ button[role="switch"][data-state="unchecked"] {
 button[role="switch"][data-state="checked"] {
   background-color: hsl(118, 19%, 41%) !important;   /* Fern */
 }
+button[role="switch"]:disabled,
+button[role="switch"][disabled] {
+  background-color: hsl(22, 50%, 62%) !important;   /* Ferrum desaturated */
+  opacity: 0.6 !important;
+  cursor: not-allowed !important;
+}
 /* Thumb is always white so it reads against both track states */
 button[role="switch"] > span {
   background-color: #ffffff !important;
@@ -504,6 +510,11 @@ button[role="switch"] > span {
 }
 .dark button[role="switch"][data-state="checked"] {
   background-color: hsl(118, 19%, 50%) !important;
+}
+.dark button[role="switch"]:disabled,
+.dark button[role="switch"][disabled] {
+  background-color: hsl(22, 40%, 30%) !important;   /* Ferrum darkened */
+  opacity: 0.6 !important;
 }
 
 /* ── Links: high contrast in both modes ─────────────────────────────────── */
