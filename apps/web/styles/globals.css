@@ -489,15 +489,20 @@ html.dark {
 
 /* ── Toggles: distinct track vs. thumb ─────────────────────────────────── */
 button[role="switch"][data-state="unchecked"] {
-  background-color: hsl(88, 20%, 68%) !important;   /* Mistral */
+  background-color: hsl(22, 76%, 48%) !important;   /* Ferrum — off */
 }
 button[role="switch"][data-state="checked"] {
-  background-color: hsl(118, 19%, 41%) !important;   /* Fern */
+  background-color: hsl(118, 19%, 41%) !important;   /* Fern — on */
 }
-button[role="switch"]:disabled,
-button[role="switch"][disabled] {
-  background-color: hsl(22, 50%, 62%) !important;   /* Ferrum desaturated */
-  opacity: 0.6 !important;
+/* Directional loading: only the clicked toggle gets a color, bystanders just dim */
+button[role="switch"][data-loading="on"] {
+  background-color: hsl(88, 20%, 68%) !important;   /* Mistral — turning on */
+}
+button[role="switch"][data-loading="off"] {
+  background-color: hsl(22, 76%, 48%) !important;   /* Ferrum — turning off */
+}
+button[role="switch"]:disabled {
+  opacity: 0.75 !important;
   cursor: not-allowed !important;
 }
 /* Thumb is always white so it reads against both track states */
@@ -506,15 +511,16 @@ button[role="switch"] > span {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25) !important;
 }
 .dark button[role="switch"][data-state="unchecked"] {
-  background-color: hsl(107, 14%, 28%) !important;
+  background-color: hsl(22, 70%, 40%) !important;
 }
 .dark button[role="switch"][data-state="checked"] {
   background-color: hsl(118, 19%, 50%) !important;
 }
-.dark button[role="switch"]:disabled,
-.dark button[role="switch"][disabled] {
-  background-color: hsl(22, 40%, 30%) !important;   /* Ferrum darkened */
-  opacity: 0.6 !important;
+.dark button[role="switch"][data-loading="on"] {
+  background-color: hsl(88, 15%, 45%) !important;
+}
+.dark button[role="switch"][data-loading="off"] {
+  background-color: hsl(22, 70%, 40%) !important;
 }
 
 /* ── Links: high contrast in both modes ─────────────────────────────────── */

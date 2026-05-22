@@ -3,6 +3,7 @@ import { useId } from "@radix-ui/react-id";
 import * as Label from "@radix-ui/react-label";
 import * as PrimitiveSwitch from "@radix-ui/react-switch";
 import type React from "react";
+import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
 import { Tooltip } from "../../tooltip";
 
@@ -39,6 +40,17 @@ export const Switch = (
     ...primitiveProps
   } = props;
   const id = useId();
+  const [pendingDirection, setPendingDirection] = useState<"on" | "off" | null>(null);
+
+  useEffect(() => {
+    if (!props.disabled) setPendingDirection(null);
+  }, [props.disabled]);
+
+  const handleCheckedChange = (checked: boolean) => {
+    setPendingDirection(checked ? "on" : "off");
+    primitiveProps.onCheckedChange?.(checked);
+  };
+
   return (
     <Wrapper tooltip={props.tooltip}>
       <div
@@ -52,6 +64,8 @@ export const Switch = (
         {LockedIcon && <div className="mr-2">{LockedIcon}</div>}
         <PrimitiveSwitch.Root
           {...primitiveProps}
+          onCheckedChange={handleCheckedChange}
+          data-loading={props.disabled && pendingDirection ? pendingDirection : undefined}
           id={id}
           className={cx(
             size === "sm" ? "h-3 w-[20px]" : "h-4 w-[28px]",
