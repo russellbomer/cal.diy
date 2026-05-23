@@ -10,7 +10,7 @@ const RedirectPage = async () => {
   const session = await getServerSession({ req: buildLegacyRequest(await headers(), await cookies()) });
 
   if (!session?.user?.id) {
-    redirect("/auth/login");
+    redirect("/russellbomer");
   }
 
   // Check if user needs onboarding and redirect before going to event-types
