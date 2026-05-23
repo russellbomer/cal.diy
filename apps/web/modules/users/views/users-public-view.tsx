@@ -71,7 +71,7 @@ export function UserPage(props: PageProps) {
             )}
             <div className="p-4">
               <UserAvatar
-                size="lg"
+                size="xl"
                 user={{
                   avatarUrl: user.avatarUrl,
                   profile: user.profile,

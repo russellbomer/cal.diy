@@ -451,9 +451,15 @@ html[dir="rtl"] .react-tel-input .flag-dropdown {
   --cal-text-subtle:       hsl(107, 12%, 40%);
   --cal-text-muted:        hsl(107, 10%, 55%);
   --cal-text-inverted:     hsl(44, 48%, 94%);
-  --cal-border:            hsl(88, 20%, 72%);
+  --cal-border:            hsl(22, 55%, 58%);
   --cal-border-emphasis:   hsl(22, 76%, 36%);
-  --cal-border-subtle:     hsl(88, 20%, 84%);
+  --cal-border-subtle:     hsl(22, 40%, 74%);
+  --cal-border-muted:      hsl(22, 30%, 82%);
+  --cal-border-booker:     hsl(22, 40%, 74%);
+  --cal-border-error:      hsl(0, 72%, 70%);
+  --border-color-default:  hsl(22, 55%, 58%);
+  --border-color-subtle:   hsl(22, 40%, 74%);
+  --border-color-muted:    hsl(22, 30%, 82%);
   /* Cal.com uses --cal-brand AND --brand-color in different components */
   --cal-brand:             hsl(118, 19%, 41%);
   --cal-brand-text:        #ffffff;
@@ -475,8 +481,14 @@ html[dir="rtl"] .react-tel-input .flag-dropdown {
   --cal-text-subtle:       hsl(44, 30%, 70%);
   --cal-text-muted:        hsl(44, 15%, 50%);
   --cal-text-inverted:     hsl(107, 18%, 15%);
-  --cal-border:            hsl(107, 14%, 25%);
-  --cal-border-emphasis:   hsl(22, 76%, 36%);
+  --cal-border:            hsl(22, 45%, 32%);
+  --cal-border-emphasis:   hsl(22, 70%, 50%);
+  --cal-border-subtle:     hsl(22, 35%, 25%);
+  --cal-border-muted:      hsl(22, 25%, 20%);
+  --cal-border-booker:     hsl(22, 35%, 25%);
+  --border-color-default:  hsl(22, 45%, 32%);
+  --border-color-subtle:   hsl(22, 35%, 25%);
+  --border-color-muted:    hsl(22, 25%, 20%);
   --cal-brand:             hsl(118, 19%, 55%);
   --cal-brand-text:        hsl(107, 18%, 10%);
 }
@@ -574,4 +586,49 @@ button, input, textarea, select {
 }
 [class*="rounded-full"] {
   border-radius: 9999px !important;
+}
+
+/* ── Admin login button (booking page) ──────────────────────────────────── */
+.craftsman-admin-btn {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  font-size: 0.65rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.375rem;
+  background: hsl(107, 18%, 15%);
+  color: hsl(44, 48%, 85%);
+  opacity: 0.35;
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  z-index: 50;
+  transition: opacity 0.2s;
+}
+.craftsman-admin-btn:hover {
+  opacity: 0.85 !important;
+  color: hsl(44, 48%, 94%) !important;
+}
+
+/* ── Ferrum borders: catch hardcoded Tailwind gray classes ──────────────── */
+.border-gray-100, .border-gray-200, .border-gray-300 {
+  border-color: hsl(22, 30%, 82%) !important;
+}
+.dark .border-gray-100, .dark .border-gray-200, .dark .border-gray-300 {
+  border-color: hsl(22, 25%, 22%) !important;
+}
+
+/* ── Calendar year token ────────────────────────────────────────────────── */
+:root { --cal-text-year: hsl(22, 76%, 36%); }
+.dark { --cal-text-year: hsl(22, 70%, 55%); }
+.text-cal-year { color: var(--cal-text-year) !important; }
+
+/* ── White text → Linen ─────────────────────────────────────────────────── */
+.text-white { color: hsl(44, 48%, 94%) !important; }
+
+/* ── Larger avatar on public booking page ───────────────────────────────── */
+[data-testid="event-meta"] [data-testid="avatar"] {
+  width: 2.5rem !important;
+  height: 2.5rem !important;
+  min-width: 2.5rem !important;
+  min-height: 2.5rem !important;
 }

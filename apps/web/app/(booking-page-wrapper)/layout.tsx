@@ -1,6 +1,7 @@
 import { headers } from "next/headers";
 
 import PageWrapper from "@components/PageWrapperAppDir";
+import { AdminLoginButton } from "./AdminLoginButton";
 
 export default async function BookingPageWrapperLayout({ children }: { children: React.ReactNode }) {
   const h = await headers();
@@ -11,6 +12,7 @@ export default async function BookingPageWrapperLayout({ children }: { children:
       <PageWrapper isBookingPage={true} requiresLicense={false} nonce={nonce}>
         {children}
       </PageWrapper>
+      <AdminLoginButton />
     </>
   );
 }

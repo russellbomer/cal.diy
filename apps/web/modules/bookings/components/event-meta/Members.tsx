@@ -72,7 +72,7 @@ export const EventMembers = ({
   return (
     <>
       <AvatarGroup
-        size="sm"
+        size="mdLg"
         className="border-muted"
         items={[
           ...orgOrTeamAvatarItem,

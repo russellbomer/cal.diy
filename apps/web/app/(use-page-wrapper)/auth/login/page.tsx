@@ -9,6 +9,7 @@ import { getServerSideProps } from "@server/lib/auth/login/getServerSideProps";
 
 import type { PageProps as ClientPageProps } from "~/auth/login-view";
 import Login from "~/auth/login-view";
+import { BackButton } from "./BackButton";
 
 export const generateMetadata = async () => {
   return await _generateMetadata(
@@ -26,7 +27,12 @@ const ServerPage = async ({ params, searchParams }: ServerPageProps) => {
   const props = await getData(
     buildLegacyCtx(await headers(), await cookies(), await params, await searchParams)
   );
-  return <Login {...props} />;
+  return (
+    <>
+      <Login {...props} />
+      <BackButton />
+    </>
+  );
 };
 
 export default ServerPage;

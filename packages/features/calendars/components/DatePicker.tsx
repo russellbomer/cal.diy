@@ -422,7 +422,7 @@ const DatePicker = ({
                 className={classNames(`text-emphasis font-semibold`, customClassNames?.datePickerTitle)}>
                 {month}
               </strong>{" "}
-              <span className={classNames(`text-subtle font-medium`, customClassNames?.datePickerTitle)}>
+              <span className={classNames(`text-subtle font-medium text-cal-year`, customClassNames?.datePickerTitle)}>
                 {browsingDate.format("YYYY")}
               </span>
             </time>
