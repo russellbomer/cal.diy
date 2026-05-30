@@ -234,7 +234,8 @@ const BookerWebWrapperComponent = ({ onBookingSuccess, hideHeader, ...props }: B
       bookerLayout={bookerLayout}
       schedule={schedule}
       verifyCode={verifyCode}
-      isPlatform={hideHeader ?? false}
+      isPlatform={false}
+      hideBookerHeader={hideHeader}
       userLocale={session?.user.locale}
       renderCaptcha
     />

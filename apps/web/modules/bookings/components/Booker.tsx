@@ -87,6 +87,7 @@ const BookerComponent = ({
   roundRobinHideOrgAndTeam,
   hideOrgTeamAvatar,
   showNoAvailabilityDialog,
+  hideBookerHeader,
 }: BookerProps & WrappedBookerProps): JSX.Element | null => {
   const searchParams = useCompatSearchParams();
   const isPlatformBookerEmbed = useIsPlatformBookerEmbed();
@@ -365,7 +366,7 @@ const BookerComponent = ({
                 (layout === BookerLayouts.COLUMN_VIEW || layout === BookerLayouts.WEEK_VIEW) &&
                   "bg-default dark:bg-cal-muted sticky top-0 z-10"
               )}>
-              {isPlatform && layout === BookerLayouts.MONTH_VIEW ? (
+              {(isPlatform || hideBookerHeader) && layout === BookerLayouts.MONTH_VIEW ? (
                 <></>
               ) : (
                 <Header
