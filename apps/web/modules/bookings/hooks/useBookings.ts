@@ -51,6 +51,7 @@ export interface IUseBookings {
   metadata: Record<string, string>;
   teamMemberEmail?: string | null;
   isBookingDryRun?: boolean;
+  onBookingSuccess?: (bookingUid: string) => void;
 }
 
 const getBaseBookingEventPayload = (booking: {
@@ -108,7 +109,7 @@ export interface IUseBookingErrors {
 }
 export type UseBookingsReturnType = ReturnType<typeof useBookings>;
 
-export const useBookings = ({ event, hashedLink, bookingForm, metadata, isBookingDryRun }: IUseBookings) => {
+export const useBookings = ({ event, hashedLink, bookingForm, metadata, isBookingDryRun, onBookingSuccess }: IUseBookings) => {
   const router = useRouter();
   const eventSlug = useBookerStoreContext((state) => state.eventSlug);
   const eventTypeId = useBookerStoreContext((state) => state.eventId);
@@ -234,6 +235,11 @@ export const useBookings = ({ event, hashedLink, bookingForm, metadata, isBookin
             isRecurring: false,
           })
         );
+      }
+
+      if (onBookingSuccess && uid) {
+        onBookingSuccess(uid);
+        return;
       }
 
       if (paymentUid) {

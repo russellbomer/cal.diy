@@ -30,9 +30,11 @@ import { Booker as BookerComponent } from "./Booker";
 
 export type BookerWebWrapperAtomProps = BookerProps & {
   eventData?: NonNullable<Awaited<ReturnType<typeof getPublicEvent>>>;
+  onBookingSuccess?: (bookingUid: string) => void;
+  hideHeader?: boolean;
 };
 
-const BookerWebWrapperComponent = (props: BookerWebWrapperAtomProps): JSX.Element => {
+const BookerWebWrapperComponent = ({ onBookingSuccess, hideHeader, ...props }: BookerWebWrapperAtomProps): JSX.Element => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -157,6 +159,7 @@ const BookerWebWrapperComponent = (props: BookerWebWrapperAtomProps): JSX.Elemen
     bookingForm: bookerForm.bookingForm,
     metadata: metadata ?? {},
     teamMemberEmail: props.teamMemberEmail,
+    onBookingSuccess,
   });
 
   useBookerEmbedEvents({
@@ -231,7 +234,7 @@ const BookerWebWrapperComponent = (props: BookerWebWrapperAtomProps): JSX.Elemen
       bookerLayout={bookerLayout}
       schedule={schedule}
       verifyCode={verifyCode}
-      isPlatform={false}
+      isPlatform={hideHeader ?? false}
       userLocale={session?.user.locale}
       renderCaptcha
     />

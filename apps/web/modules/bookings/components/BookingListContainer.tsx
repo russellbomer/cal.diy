@@ -18,6 +18,7 @@ import { useBookingListData } from "~/bookings/hooks/useBookingListData";
 import { useBookingStatusTab } from "~/bookings/hooks/useBookingStatusTab";
 import { useFacetedUniqueValues } from "~/bookings/hooks/useFacetedUniqueValues";
 import { useListAutoSelector } from "~/bookings/hooks/useListAutoSelector";
+import { NewBookingDialog } from "./NewBookingDialog";
 import { DataTableFilters, DataTableSegment } from "~/data-table/components";
 import { useDataTable } from "~/data-table/hooks/useDataTable";
 import { useDisplayedFilterCount } from "~/data-table/hooks/useDisplayedFilterCount";
@@ -93,6 +94,7 @@ function BookingListInner({
   const setSelectedBookingUid = useBookingDetailsSheetStore((state) => state.setSelectedBookingUid);
   const router = useRouter();
   const [showFilters, setShowFilters] = useState(true);
+  const [showNewBookingDialog, setShowNewBookingDialog] = useState(false);
 
   // Handle auto-selection for list view
   useListAutoSelector(bookings);
@@ -159,7 +161,7 @@ function BookingListInner({
 
   return (
     <>
-      <div className="flex flex-wrap items-center gap-2">
+      <div className="flex flex-wrap items-center gap-x-2 gap-y-3 pb-4">
         {/* Desktop: full width on first row, Mobile: full width on first row with horizontal scroll */}
         <div className="w-full md:w-auto">
           <div className="overflow-x-auto md:overflow-visible">
@@ -190,6 +192,13 @@ function BookingListInner({
         <DataTableSegment.Select />
         {/* <BookingsCsvDownload status={status} /> */}
         {bookingsV3Enabled && <ViewToggleButton bookingsV3Enabled={bookingsV3Enabled} />}
+        <Button
+          color="primary"
+          StartIcon="plus"
+          className="h-[34px]"
+          onClick={() => setShowNewBookingDialog(true)}>
+          New Booking
+        </Button>
       </div>
       {displayedFilterCount > 0 && showFilters && (
         <div className="mt-3 flex flex-wrap items-center gap-2">
@@ -206,7 +215,7 @@ function BookingListInner({
       {status === "upcoming" && !isEmpty && (
         <WipeMyCalActionButton className="mt-4" bookingStatus={status} bookingsEmpty={isEmpty} />
       )}
-      <div className="mt-4">
+      <div className="mt-6">
         <BookingList
           status={status}
           table={table}
@@ -226,6 +235,10 @@ function BookingListInner({
           bookingAuditEnabled={bookingAuditEnabled}
         />
       )}
+      <NewBookingDialog
+        isOpen={showNewBookingDialog}
+        onClose={() => setShowNewBookingDialog(false)}
+      />
     </>
   );
 }
